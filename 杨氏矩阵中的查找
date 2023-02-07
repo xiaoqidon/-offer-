@@ -1,0 +1,31 @@
+#include <stdbool.h>
+bool Find(int target, int** array, int arrayRowLen, int* arrayColLen ) 
+{
+    // write code here
+    if(array[arrayRowLen-1][*arrayColLen-1]<target)
+    {
+        return false;
+    }
+
+	int x = 0;//行
+	int y = *arrayColLen - 1;//列
+
+		while (x<arrayRowLen  &&  y>=0)
+		{
+            int tem=array[x][y];
+			if (tem < target)
+			{
+				x++;
+			}
+			else if (tem > target)
+			{
+				y--;
+			}
+			else
+			{
+				return true;
+			}
+		}
+	return false;
+}
+
