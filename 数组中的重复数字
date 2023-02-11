@@ -1,0 +1,77 @@
+第一种  利用下标与值交换查看是否有重复
+int duplicate(int* numbers, int numbersLen) {
+    for (int i = 0; i < numbersLen; i++) {
+        while (numbers[i] != i) {
+ 
+ 
+            if (numbers[i] == numbers[numbers[i]]) {
+                return numbers[i];
+            }
+               
+                int tem = numbers[i];
+                numbers[i] = numbers[tem];
+                numbers[tem] = tem;
+             
+ 
+        }
+ 
+    }
+ 
+    return -1;
+ 
+}
+
+
+第二种：一个一个遍历找
+
+int duplicate(int* numbers, int numbersLen ) {
+    // write code here
+int i=0;
+int n=0;
+for(n=0;n<numbersLen;n++)
+{
+for (i=1; i<numbersLen; )
+{
+     
+if(numbers[n]==numbers[i+n])
+{
+   return numbers[n];
+}
+else
+{
+i++;
+}
+}
+}
+ 
+return -1;
+}
+
+int cmp(const void* numbers,const void* pa)
+{
+ 
+    return  *(int*)numbers - *(int *)pa;
+}
+ 
+ 
+ 第三种：快速牌序完找
+int duplicate(int* numbers, int numbersLen ) {
+    // write code here
+ 
+    int* pa = numbers + numbersLen;
+ 
+    qsort(numbers,
+    numbersLen,
+    sizeof numbers[0],
+     cmp);
+ 
+    for (int i = 0; i < numbersLen; ) {
+        if (numbers[i] == numbers [i + 1]) {
+            return numbers[i];
+        } else {
+            i++  ;
+        }
+    }
+ 
+    return -1;
+}
